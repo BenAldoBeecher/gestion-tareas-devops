@@ -1,0 +1,35 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Ejecutar pruebas
+        run: npm test
+
+      - name: Verificar estructura del proyecto
+        run: |
+          echo "Verificando archivos clave..."
+          test -f package.json && echo "package.json OK"
+          test -f src/app.js && echo "src/app.js OK"
+          test -f Dockerfile || echo "Dockerfile pendiente"
+          test -f render.yaml || echo "render.yaml pendiente"
