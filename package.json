@@ -1,0 +1,17 @@
+{
+  "name": "todo-app-devops",
+  "version": "1.0.0",
+  "description": "Sistema de Gestión de Tareas - Evidencia DevOps",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "test": "node --test tests/"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "pg": "^8.13.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
